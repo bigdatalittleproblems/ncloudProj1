@@ -1,0 +1,54 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "",
+    "Metadata": {},
+    "Parameters": {},
+    "Mappings": {},
+    "Conditions": {},
+    "Resources": {
+        "kongdb": {
+            "Type": "AWS::RDS::DBInstance",
+            "Properties": {
+                "AllocatedStorage": "30",
+                "AllowMajorVersionUpgrade": "False",
+                "AvailabilityZone": "us-east-1a",
+                "BackupRetentionPeriod": 1,
+                "DBName": "kong",
+                "DeletionProtection": "False",
+                "Engine": "postgres",
+                "MasterUsername": "kong",
+                "MasterUserPassword": "pXDKPTsA3Kbe3F7qcMJT",
+                "MultiAZ": "False",
+                "DBSubnetGroupName": {
+                    "Ref": "kongDBSubnetGroup"
+                },
+                "DBInstanceClass": "db.t3.micro"
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "d964fad6-373d-42fd-bfa8-61aa90827763"
+                }
+            }
+        },
+        "kongDBSubnetGroup": {
+            "Type": "AWS::RDS::DBSubnetGroup",
+            "Properties": {
+                "DBSubnetGroupDescription": "Subnet where Kong will be Deployed",
+                "SubnetIds": [
+                    {
+                        "Ref": "publicsubnet1"
+                    },
+                    {
+                        "Ref": "publicsubnet2"
+                    }
+                ]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "a2c596a4-2433-46e2-a1b1-63be60176ad6"
+                }
+            }
+        }
+    },
+    "Outputs": {}
+}
