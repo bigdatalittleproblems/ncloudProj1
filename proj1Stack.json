@@ -5,10 +5,11 @@
         "amiparam": {
             "Description": "select your AIM",
             "Type": "String",
-            "Default": "ami-0533f2ba8a1995cf9",
+            "Default": "ami-0323c3dd2da7fb37d",
             "AllowedValues": [
                 "ami-0533f2ba8a1995cf9",
-                "ami-042e8287309f5df03"
+                "ami-042e8287309f5df03",
+                "ami-0323c3dd2da7fb37d"
             ]
         },
         "ec2volsize": {
@@ -79,6 +80,11 @@
                 },
                 "Protocol": "HTTP",
                 "Port": 80
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "a26ad1d5-7ddb-4be2-af65-71c1d7e722a2"
+                }
             }
         },
         "proj1lblisten": {
@@ -97,6 +103,11 @@
                 },
                 "Port": 80,
                 "Protocol": "HTTP"
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "45d9f3de-8799-4ac2-b991-d0382bef6d00"
+                }
             }
         },
         "proj1LoadBalancer": {
@@ -120,6 +131,7 @@
         },
         "proj1ecsservice": {
             "Type": "AWS::ECS::Service",
+            "DependsOn" : ["proj1lblisten","proj1LoadBalancer","proj1lbtarget"],
             "Properties": {
                 "Cluster": {
                     "Ref": "proj1cluster"
@@ -161,6 +173,11 @@
                         ]
                     }
                 ]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "a765afa1-6723-4e0b-977f-e8c2c419f27d"
+                }
             }
         },
         "proj1taskdefbackup": {
@@ -326,6 +343,11 @@
                 "VpcId": {
                     "Ref": "myVPC"
                 }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "f1a54262-6bb9-46bf-ad09-9b1c1089261e"
+                }
             }
         },
         "containerSG": {
@@ -353,6 +375,11 @@
                 ],
                 "VpcId": {
                     "Ref": "myVPC"
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "9234ed59-9d62-47ca-8259-c355e4d3dd87"
                 }
             }
         },
@@ -649,5 +676,371 @@
             }
         }
     },
-    "Outputs": {}
+    "Outputs": {},
+    "Metadata": {
+        "AWS::CloudFormation::Designer": {
+            "acbe6b9a-b145-4464-8a92-37500e608772": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 60,
+                    "y": 840
+                },
+                "z": 1,
+                "embeds": []
+            },
+            "9cc82114-b3f7-462d-b53c-d9080ed8a973": {
+                "size": {
+                    "width": 780,
+                    "height": 690
+                },
+                "position": {
+                    "x": 60,
+                    "y": 90
+                },
+                "z": 1,
+                "embeds": [
+                    "2175295f-32b0-4237-8e5a-6ccc085502ac",
+                    "9b5841e7-b1a4-4037-a890-98e430e6621f",
+                    "49b9c7dc-bee3-4d64-91a1-643d550f1d1d",
+                    "ea9c45fb-065a-4b51-a541-2ff19fdf53f0",
+                    "f8abf819-cc5b-4d19-bb29-220fb4dd4325",
+                    "58619c9b-9fa8-47fb-9f5d-1ac66f57d71e",
+                    "f1a54262-6bb9-46bf-ad09-9b1c1089261e",
+                    "9234ed59-9d62-47ca-8259-c355e4d3dd87",
+                    "a26ad1d5-7ddb-4be2-af65-71c1d7e722a2"
+                ]
+            },
+            "6dd159fd-7f39-4835-8e91-1daa430254b8": {
+                "source": {
+                    "id": "9cc82114-b3f7-462d-b53c-d9080ed8a973"
+                },
+                "target": {
+                    "id": "acbe6b9a-b145-4464-8a92-37500e608772"
+                }
+            },
+            "2175295f-32b0-4237-8e5a-6ccc085502ac": {
+                "size": {
+                    "width": 150,
+                    "height": 150
+                },
+                "position": {
+                    "x": 600,
+                    "y": 360
+                },
+                "z": 2,
+                "parent": "9cc82114-b3f7-462d-b53c-d9080ed8a973",
+                "embeds": [],
+                "iscontainedinside": [
+                    "9cc82114-b3f7-462d-b53c-d9080ed8a973"
+                ]
+            },
+            "9b5841e7-b1a4-4037-a890-98e430e6621f": {
+                "size": {
+                    "width": 240,
+                    "height": 240
+                },
+                "position": {
+                    "x": 90,
+                    "y": 150
+                },
+                "z": 2,
+                "parent": "9cc82114-b3f7-462d-b53c-d9080ed8a973",
+                "embeds": [
+                    "b5105be6-4684-467d-b9cd-d3bbd98f9025"
+                ],
+                "iscontainedinside": [
+                    "9cc82114-b3f7-462d-b53c-d9080ed8a973"
+                ]
+            },
+            "b5105be6-4684-467d-b9cd-d3bbd98f9025": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 120,
+                    "y": 210
+                },
+                "z": 3,
+                "parent": "9b5841e7-b1a4-4037-a890-98e430e6621f",
+                "embeds": [],
+                "isassociatedwith": [
+                    "acbe6b9a-b145-4464-8a92-37500e608772"
+                ],
+                "iscontainedinside": [
+                    "9b5841e7-b1a4-4037-a890-98e430e6621f"
+                ]
+            },
+            "49b9c7dc-bee3-4d64-91a1-643d550f1d1d": {
+                "size": {
+                    "width": 150,
+                    "height": 150
+                },
+                "position": {
+                    "x": 600,
+                    "y": 150
+                },
+                "z": 2,
+                "parent": "9cc82114-b3f7-462d-b53c-d9080ed8a973",
+                "embeds": [],
+                "iscontainedinside": [
+                    "9cc82114-b3f7-462d-b53c-d9080ed8a973"
+                ]
+            },
+            "d41140ef-1bfc-4be8-a7e4-d07f7dffde68": {
+                "source": {
+                    "id": "2175295f-32b0-4237-8e5a-6ccc085502ac"
+                },
+                "target": {
+                    "id": "49b9c7dc-bee3-4d64-91a1-643d550f1d1d"
+                }
+            },
+            "ea9c45fb-065a-4b51-a541-2ff19fdf53f0": {
+                "size": {
+                    "width": 150,
+                    "height": 150
+                },
+                "position": {
+                    "x": 90,
+                    "y": 450
+                },
+                "z": 2,
+                "parent": "9cc82114-b3f7-462d-b53c-d9080ed8a973",
+                "embeds": [],
+                "iscontainedinside": [
+                    "9cc82114-b3f7-462d-b53c-d9080ed8a973"
+                ]
+            },
+            "2f4dd485-1c1c-4e49-9e66-9292e572cbb0": {
+                "source": {
+                    "id": "2175295f-32b0-4237-8e5a-6ccc085502ac"
+                },
+                "target": {
+                    "id": "ea9c45fb-065a-4b51-a541-2ff19fdf53f0"
+                }
+            },
+            "f8abf819-cc5b-4d19-bb29-220fb4dd4325": {
+                "size": {
+                    "width": 150,
+                    "height": 150
+                },
+                "position": {
+                    "x": 390,
+                    "y": 360
+                },
+                "z": 2,
+                "parent": "9cc82114-b3f7-462d-b53c-d9080ed8a973",
+                "embeds": [],
+                "iscontainedinside": [
+                    "9cc82114-b3f7-462d-b53c-d9080ed8a973"
+                ]
+            },
+            "1435bb5d-f29b-44f4-92f3-9ebe0c447b52": {
+                "source": {
+                    "id": "9b5841e7-b1a4-4037-a890-98e430e6621f"
+                },
+                "target": {
+                    "id": "f8abf819-cc5b-4d19-bb29-220fb4dd4325"
+                }
+            },
+            "58619c9b-9fa8-47fb-9f5d-1ac66f57d71e": {
+                "size": {
+                    "width": 150,
+                    "height": 150
+                },
+                "position": {
+                    "x": 390,
+                    "y": 150
+                },
+                "z": 2,
+                "parent": "9cc82114-b3f7-462d-b53c-d9080ed8a973",
+                "embeds": [],
+                "iscontainedinside": [
+                    "9cc82114-b3f7-462d-b53c-d9080ed8a973"
+                ]
+            },
+            "439b87ae-7a72-4822-b647-1c4704fef94e": {
+                "source": {
+                    "id": "9b5841e7-b1a4-4037-a890-98e430e6621f"
+                },
+                "target": {
+                    "id": "58619c9b-9fa8-47fb-9f5d-1ac66f57d71e"
+                }
+            },
+            "f1a54262-6bb9-46bf-ad09-9b1c1089261e": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 300,
+                    "y": 570
+                },
+                "z": 2,
+                "parent": "9cc82114-b3f7-462d-b53c-d9080ed8a973",
+                "embeds": [],
+                "iscontainedinside": [
+                    "9cc82114-b3f7-462d-b53c-d9080ed8a973"
+                ]
+            },
+            "9234ed59-9d62-47ca-8259-c355e4d3dd87": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 420,
+                    "y": 570
+                },
+                "z": 2,
+                "parent": "9cc82114-b3f7-462d-b53c-d9080ed8a973",
+                "embeds": [],
+                "iscontainedinside": [
+                    "9cc82114-b3f7-462d-b53c-d9080ed8a973"
+                ]
+            },
+            "81959a1e-7ff5-4952-9bb6-759c26706ade": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 180,
+                    "y": 840
+                },
+                "z": 1,
+                "embeds": [],
+                "isassociatedwith": [
+                    "f1a54262-6bb9-46bf-ad09-9b1c1089261e"
+                ]
+            },
+            "c2c88d05-c7e7-4132-b6b8-c0f501d10c09": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 300,
+                    "y": 840
+                },
+                "z": 1,
+                "embeds": []
+            },
+            "a765afa1-6723-4e0b-977f-e8c2c419f27d": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 420,
+                    "y": 840
+                },
+                "z": 1,
+                "embeds": []
+            },
+            "bc7b922b-b1b9-4c2b-9afd-a0ca0e36bc59": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 540,
+                    "y": 840
+                },
+                "z": 1,
+                "embeds": [],
+                "iscontainedinside": [
+                    "58619c9b-9fa8-47fb-9f5d-1ac66f57d71e",
+                    "f8abf819-cc5b-4d19-bb29-220fb4dd4325"
+                ]
+            },
+            "a26ad1d5-7ddb-4be2-af65-71c1d7e722a2": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 540,
+                    "y": 570
+                },
+                "z": 2,
+                "parent": "9cc82114-b3f7-462d-b53c-d9080ed8a973",
+                "embeds": [],
+                "iscontainedinside": [
+                    "9cc82114-b3f7-462d-b53c-d9080ed8a973"
+                ]
+            },
+            "38d03e89-fa90-423f-aadc-aa7a8e28f1bc": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 660,
+                    "y": 840
+                },
+                "z": 1,
+                "embeds": [],
+                "isassociatedwith": [
+                    "81959a1e-7ff5-4952-9bb6-759c26706ade",
+                    "a26ad1d5-7ddb-4be2-af65-71c1d7e722a2"
+                ],
+                "iscontainedinside": [
+                    "58619c9b-9fa8-47fb-9f5d-1ac66f57d71e",
+                    "f8abf819-cc5b-4d19-bb29-220fb4dd4325"
+                ]
+            },
+            "45d9f3de-8799-4ac2-b991-d0382bef6d00": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 780,
+                    "y": 840
+                },
+                "z": 1,
+                "embeds": []
+            },
+            "54ed43b9-89bb-4903-bcb7-bfcaef459088": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 900,
+                    "y": 90
+                },
+                "z": 1,
+                "embeds": []
+            },
+            "69ee13c6-0c25-4a70-af0e-c17ece8f224e": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 900,
+                    "y": 210
+                },
+                "z": 1,
+                "embeds": []
+            },
+            "188ffcf8-7aa1-41a4-ba02-fe457371816c": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 900,
+                    "y": 330
+                },
+                "z": 1,
+                "embeds": []
+            }
+        }
+    }
 }
