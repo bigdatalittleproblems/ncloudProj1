@@ -113,6 +113,11 @@
         "proj1LoadBalancer": {
             "Type": "AWS::ElasticLoadBalancingV2::LoadBalancer",
             "Properties": {
+                "SecurityGroups": [
+                    {
+                        "Ref": "containerSG"
+                    }
+                ],
                 "Subnets": [
                     {
                         "Ref": "publicsubnet1"
@@ -131,12 +136,16 @@
         },
         "proj1ecsservice": {
             "Type": "AWS::ECS::Service",
-            "DependsOn" : ["proj1lblisten","proj1LoadBalancer","proj1lbtarget"],
+            "DependsOn": [
+                "proj1lblisten",
+                "proj1LoadBalancer",
+                "proj1lbtarget"
+            ],
             "Properties": {
                 "Cluster": {
                     "Ref": "proj1cluster"
                 },
-                "DesiredCount": 1,
+                "DesiredCount": 0,
                 "LaunchType": "EC2",
                 "TaskDefinition": {
                     "Ref": "proj1taskdef"
@@ -329,15 +338,11 @@
                 "SecurityGroupIngress": [
                     {
                         "IpProtocol": "tcp",
-                        "CidrIp": "0.0.0.0/0",
-                        "FromPort": 5000,
-                        "ToPort": 5000
-                    },
-                    {
-                        "IpProtocol": "tcp",
-                        "CidrIp": "0.0.0.0/0",
-                        "FromPort": 5432,
-                        "ToPort": 5432
+                        "SourceSecurityGroupId": {
+                            "Ref": "containerSG"
+                        },
+                        "FromPort": 0,
+                        "ToPort": 0
                     }
                 ],
                 "VpcId": {
@@ -358,19 +363,9 @@
                 "SecurityGroupIngress": [
                     {
                         "IpProtocol": "tcp",
-                        "SourceSecurityGroupId": {
-                            "Ref": "vpcsg"
-                        },
-                        "FromPort": 5000,
-                        "ToPort": 5000
-                    },
-                    {
-                        "IpProtocol": "tcp",
-                        "SourceSecurityGroupId": {
-                            "Ref": "vpcsg"
-                        },
-                        "FromPort": 5432,
-                        "ToPort": 5432
+                        "CidrIp": "0.0.0.0/0",
+                        "FromPort": 80,
+                        "ToPort": 80
                     }
                 ],
                 "VpcId": {
