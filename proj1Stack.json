@@ -136,7 +136,7 @@
                 "Cluster": {
                     "Ref": "proj1cluster"
                 },
-                "DesiredCount": 0,
+                "DesiredCount": 1,
                 "LaunchType": "EC2",
                 "TaskDefinition": {
                     "Ref": "proj1taskdef"
