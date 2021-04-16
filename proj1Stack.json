@@ -341,8 +341,8 @@
                         "SourceSecurityGroupId": {
                             "Ref": "containerSG"
                         },
-                        "FromPort": 0,
-                        "ToPort": 0
+                        "FromPort": -1,
+                        "ToPort": -1
                     }
                 ],
                 "VpcId": {
@@ -366,6 +366,11 @@
                         "CidrIp": "0.0.0.0/0",
                         "FromPort": 80,
                         "ToPort": 80
+                    },{
+                        "IpProtocol": "tcp",
+                        "CidrIp": "0.0.0.0/0",
+                        "FromPort": 443,
+                        "ToPort": 443
                     }
                 ],
                 "VpcId": {
