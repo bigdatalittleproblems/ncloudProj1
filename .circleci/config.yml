@@ -11,7 +11,7 @@ jobs:
       - checkout
       - aws-cli/setup:
           profile-name: example
-      - run: aws smc cloudformation deploy --template-file .\proj1Stack.json --stack-name cr-proj1-test --region us-west-1 
+      - run: aws cloudformation deploy --template-file .\proj1Stack.json --stack-name cr-proj1-test --region us-west-1 
 workflows:
   main:
     jobs:
