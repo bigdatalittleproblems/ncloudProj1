@@ -337,7 +337,6 @@
                 "GroupName": "proj1sg",
                 "SecurityGroupIngress": [
                     {
-                        "IpProtocol": "tcp",
                         "SourceSecurityGroupId": {
                             "Ref": "containerSG"
                         },
