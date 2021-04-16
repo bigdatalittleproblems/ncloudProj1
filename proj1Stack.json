@@ -255,9 +255,18 @@
                 }
             }
         },
+        "ecsRole": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+                "AssumeRolePolicyDocument": {},
+                "Path": "",
+                "ManagedPolicyArns": ["arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceforEC2Role"]
+            }
+        },
         "proj1asg": {
             "Type": "AWS::AutoScaling::AutoScalingGroup",
             "Properties": {
+                "ServiceLinkedRoleARN":"ecsRole",
                 "VPCZoneIdentifier": [
                     {
                         "Ref": "publicsubnet1"
