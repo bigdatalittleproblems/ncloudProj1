@@ -74,15 +74,6 @@
         "proj1lbtarget": {
             "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
             "Properties": {
-                "HealthCheckIntervalSeconds": 5,
-                "HealthCheckPath": "/",
-                "HealthCheckProtocol": "HTTP",
-                "HealthCheckTimeoutSeconds": 2,
-                "HealthyThresholdCount": 2,
-                "Matcher": {
-                    "HttpCode": "200"
-                },
-                "Port": 80,
                 "Protocol": "HTTP",
                 "Name": "proj1lbtarget",
                 "VpcId": {
