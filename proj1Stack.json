@@ -142,6 +142,7 @@
                 "proj1lbtarget"
             ],
             "Properties": {
+                "Role":"arn:aws:iam::671538735556:role/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS",
                 "Cluster": {
                     "Ref": "proj1cluster"
                 },
@@ -258,7 +259,6 @@
         "proj1asg": {
             "Type": "AWS::AutoScaling::AutoScalingGroup",
             "Properties": {
-                "ServiceLinkedRoleARN": "arn:aws:iam::671538735556:role/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS",
                 "VPCZoneIdentifier": [
                     {
                         "Ref": "publicsubnet1"
