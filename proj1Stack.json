@@ -1,6 +1,6 @@
 {
     "AWSTemplateFormatVersion": "2010-09-09",
-    "Description": "",
+    "Description": "Proj1 nCloud CloudFormation created by Christian Ramirez",
     "Parameters": {
         "amiparam": {
             "Description": "select your AIM",
