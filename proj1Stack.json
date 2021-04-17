@@ -75,6 +75,7 @@
             "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
             "Properties": {
                 "Protocol": "HTTP",
+                "Port": 80,
                 "Name": "proj1lbtarget",
                 "VpcId": {
                     "Ref": "myVPC"
