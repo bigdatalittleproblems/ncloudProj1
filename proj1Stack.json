@@ -76,7 +76,6 @@
             "Properties": {
                 "HealthCheckIntervalSeconds": 5,
                 "HealthCheckPath": "/",
-                "HealthCheckPort": "80",
                 "HealthCheckProtocol": "HTTP",
                 "HealthCheckTimeoutSeconds": 2,
                 "HealthyThresholdCount": 2,
