@@ -290,12 +290,100 @@
                                 "servicediscovery:UpdateInstanceCustomHealthStatus"
                             ],
                             "Resource": "*"
+                        },
+                        {
+                            "Sid": "AutoScaling",
+                            "Effect": "Allow",
+                            "Action": [
+                                "autoscaling:Describe*"
+                            ],
+                            "Resource": "*"
+                        },
+                        {
+                            "Sid": "AutoScalingManagement",
+                            "Effect": "Allow",
+                            "Action": [
+                                "autoscaling:DeletePolicy",
+                                "autoscaling:PutScalingPolicy",
+                                "autoscaling:SetInstanceProtection",
+                                "autoscaling:UpdateAutoScalingGroup"
+                            ],
+                            "Resource": "*",
+                            "Condition": {
+                                "Null": {
+                                    "autoscaling:ResourceTag/AmazonECSManaged": "false"
+                                }
+                            }
+                        },
+                        {
+                            "Sid": "AutoScalingPlanManagement",
+                            "Effect": "Allow",
+                            "Action": [
+                                "autoscaling-plans:CreateScalingPlan",
+                                "autoscaling-plans:DeleteScalingPlan",
+                                "autoscaling-plans:DescribeScalingPlans"
+                            ],
+                            "Resource": "*"
+                        },
+                        {
+                            "Sid": "CWAlarmManagement",
+                            "Effect": "Allow",
+                            "Action": [
+                                "cloudwatch:DeleteAlarms",
+                                "cloudwatch:DescribeAlarms",
+                                "cloudwatch:PutMetricAlarm"
+                            ],
+                            "Resource": "arn:aws:cloudwatch:*:*:alarm:*"
+                        },
+                        {
+                            "Sid": "ECSTagging",
+                            "Effect": "Allow",
+                            "Action": [
+                                "ec2:CreateTags"
+                            ],
+                            "Resource": "arn:aws:ec2:*:*:network-interface/*"
+                        },
+                        {
+                            "Sid": "CWLogGroupManagement",
+                            "Effect": "Allow",
+                            "Action": [
+                                "logs:CreateLogGroup",
+                                "logs:DescribeLogGroups",
+                                "logs:PutRetentionPolicy"
+                            ],
+                            "Resource": "arn:aws:logs:*:*:log-group:/aws/ecs/*"
+                        },
+                        {
+                            "Sid": "CWLogStreamManagement",
+                            "Effect": "Allow",
+                            "Action": [
+                                "logs:CreateLogStream",
+                                "logs:DescribeLogStreams",
+                                "logs:PutLogEvents"
+                            ],
+                            "Resource": "arn:aws:logs:*:*:log-group:/aws/ecs/*:log-stream:*"
+                        },
+                        {
+                            "Sid": "ExecuteCommandSessionManagement",
+                            "Effect": "Allow",
+                            "Action": [
+                                "ssm:DescribeSessions"
+                            ],
+                            "Resource": "*"
+                        },
+                        {
+                            "Sid": "ExecuteCommand",
+                            "Effect": "Allow",
+                            "Action": [
+                                "ssm:StartSession"
+                            ],
+                            "Resource": [
+                                "arn:aws:ecs:*:*:task/*",
+                                "arn:aws:ssm:*:*:document/AmazonECS-ExecuteInteractiveCommand"
+                            ]
                         }
                     ]
-                },
-                "ManagedPolicyArns": [
-                    "arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceforEC2Role"
-                ]
+                }
             }
         },
         "proj1asg": {
