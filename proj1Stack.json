@@ -74,12 +74,21 @@
         "proj1lbtarget": {
             "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
             "Properties": {
+                "HealthCheckIntervalSeconds": 5,
+                "HealthCheckPath": "/",
+                "HealthCheckPort": "80",
+                "HealthCheckProtocol": "HTTP",
+                "HealthCheckTimeoutSeconds": 2,
+                "HealthyThresholdCount": 2,
+                "Matcher": {
+                    "HttpCode": "200"
+                },
+                "Port": 80,
+                "Protocol": "HTTP",
                 "Name": "proj1lbtarget",
                 "VpcId": {
                     "Ref": "myVPC"
-                },
-                "Protocol": "HTTP",
-                "Port": 80
+                }
             },
             "Metadata": {
                 "AWS::CloudFormation::Designer": {
@@ -142,7 +151,7 @@
                 "proj1lbtarget"
             ],
             "Properties": {
-                "Role":"arn:aws:iam::671538735556:role/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS",
+                "Role": "arn:aws:iam::671538735556:role/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS",
                 "Cluster": {
                     "Ref": "proj1cluster"
                 },
@@ -167,10 +176,36 @@
                 }
             }
         },
+        "ECSTaskExecutionRole": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+                "AssumeRolePolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                        {
+                            "Sid": "",
+                            "Effect": "Allow",
+                            "Principal": {
+                                "Service": "ecs-tasks.amazonaws.com"
+                            },
+                            "Action": "sts:AssumeRole"
+                        }
+                    ]
+                },
+                "ManagedPolicyArns": [
+                    "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
+                ]
+            }
+        },
         "proj1taskdef": {
             "Type": "AWS::ECS::TaskDefinition",
             "Properties": {
-                "ExecutionRoleArn": "arn:aws:iam::671538735556:role/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS",
+                "ExecutionRoleArn": {
+                    "Fn::GetAtt": [
+                        "ECSTaskExecutionRole",
+                        "Arn"
+                    ]
+                },
                 "ContainerDefinitions": [
                     {
                         "MemoryReservation": 128,
