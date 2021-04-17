@@ -9,7 +9,7 @@ jobs:
       - checkout
       - aws-cli/setup:
           profile-name: example
-      - run: aws cloudformation deploy --template-file proj1Stack.json --stack-name cr-proj1-noRDS --region us-east-1
+      - run: aws cloudformation deploy --template-file proj1Stack.json --stack-name cr-proj1-noRDS --region us-east-1 --capabilities CAPABILITY_IAM
 workflows:
   main:
     jobs:
