@@ -203,8 +203,8 @@
                 },
                 "LoadBalancers": [
                     {
-                        "ContainerName": "nginx",
-                        "ContainerPort": 80,
+                        "ContainerName": "kong",
+                        "ContainerPort": 8000,
                         "TargetGroupArn": {
                             "Ref": "ECSTG"
                         }
@@ -238,7 +238,7 @@
                 ]
             }
         },
-        "ECStaskdefinition": {
+        "TaskBackup": {
             "Type": "AWS::ECS::TaskDefinition",
             "Properties": {
                 "ExecutionRoleArn": {
@@ -266,13 +266,13 @@
                 }
             }
         },
-        "ECSKongTask": {
+        "ECStaskdefinition": {
             "Type": "AWS::ECS::TaskDefinition",
             "Properties": {
                 "ContainerDefinitions": [
                     {
                         "MemoryReservation": 128,
-                        "Image": "public.ecr.aws/v1i0e6j5/kong:latest",
+                        "Image": "docker.io/bitnami/kong:latest",
                         "Name": "kong",
                         "PortMappings": [
                             {
@@ -292,24 +292,20 @@
                         ],
                         "Environment": [
                             {
-                                "Name": "KONG_PROXY_ACCESS_LOG",
-                                "Value": "/dev/stdout"
+                                "Name": "KONG_MIGRATE",
+                                "Value": "yes"
                             },
                             {
-                                "Name": "KONG_ADMIN_ACCESS_LOG",
-                                "Value": "/dev/stdout"
+                                "Name": "KONG_PG_HOST",
+                                "Value": "postgresql"
                             },
                             {
-                                "Name": "KONG_PROXY_ERROR_LOG",
-                                "Value": "/dev/stderr"
+                                "Name": "KONG_PG_PASSWORD",
+                                "Value": "bitnami"
                             },
                             {
-                                "Name": "KONG_ADMIN_ERROR_LOG",
-                                "Value": "/dev/stderr"
-                            },
-                            {
-                                "Name": "KONG_ADMIN_LISTEN",
-                                "Value": "0.0.0.0:8001"
+                                "Name": "KONG_ADMIN_LISTEN_ADDRESS",
+                                "Value": "0.0.0.0"
                             }
                         ]
                     },
@@ -319,8 +315,31 @@
                         "Name": "flask",
                         "PortMappings": [
                             {
+                                "ContainerPort": "5000"                            }
+                        ]
+                    },
+                    {
+                        "MemoryReservation": 128,
+                        "Image": "docker.io/bitnami/postgresql:latest",
+                        "Name": "postgresql",
+                        "PortMappings": [
+                            {
                                 "ContainerPort": "5000",
                                 "HostPort": "80"
+                            }
+                        ],
+                        "Environment": [
+                            {
+                                "Name": "POSTGRESQL_USERNAME",
+                                "Value": "kong"
+                            },
+                            {
+                                "Name": "POSTGRESQL_PASSWORD",
+                                "Value": "bitnami"
+                            },
+                            {
+                                "Name": "POSTGRESQL_DATABASE",
+                                "Value": "kong"
                             }
                         ]
                     }
