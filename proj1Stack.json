@@ -80,7 +80,6 @@
             "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
             "Properties": {
                 "Protocol": "HTTP",
-                "Port": 5000,
                 "Name": "ECSTG",
                 "VpcId": {
                     "Ref": "ECSVpc"
@@ -106,7 +105,6 @@
                 "LoadBalancerArn": {
                     "Ref": "ECSALB"
                 },
-                "Port": 80,
                 "Protocol": "HTTP"
             },
             "Metadata": {
@@ -282,12 +280,9 @@
                                 "ContainerPort": "5432"
                             },
                             {
-                                "ContainerPort": "8001",
-                                "HostPort": "8001"
-                            },
+                                "ContainerPort": "8001"                            },
                             {
-                                "ContainerPort": "8443",
-                                "HostPort": "8443"
+                                "ContainerPort": "8443"
                             }
                         ],
                         "Environment": [
