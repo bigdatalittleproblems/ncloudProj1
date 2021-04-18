@@ -80,7 +80,7 @@
             "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
             "Properties": {
                 "Protocol": "HTTP",
-                "Port": 5000,
+                "Port": 80,
                 "Name": "ECSTG",
                 "VpcId": {
                     "Ref": "ECSVpc"
@@ -107,7 +107,7 @@
                     "Ref": "ECSALB"
                 },
                 "Protocol": "HTTP",
-                "Port": 5000
+                "Port": 80
             },
             "Metadata": {
                 "AWS::CloudFormation::Designer": {
