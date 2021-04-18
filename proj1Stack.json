@@ -7,11 +7,6 @@
             "Description": "Name of an existing EC2 KeyPair to enable SSH access to the ECS instances.",
             "Default": "cr_wsl"
         },
-        "ec2volsize": {
-            "Description": "size of ec2 EBS Volume",
-            "Type": "Number",
-            "Default": "30"
-        },
         "instancetypeparam": {
             "Description": "Instance Type",
             "Type": "String",
@@ -409,17 +404,6 @@
                 "IamInstanceProfile": {
                     "Ref": "EC2InstanceProfile"
                 },
-                "BlockDeviceMappings": [
-                    {
-                        "DeviceName": "/dev/xvda",
-                        "Ebs": {
-                            "VolumeSize": {
-                                "Ref": "ec2volsize"
-                            },
-                            "VolumeType": "gp2"
-                        }
-                    }
-                ],
                 "SecurityGroups": [
                     {
                         "Ref": "EcsSecurityGroup"
