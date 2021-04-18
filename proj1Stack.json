@@ -266,7 +266,7 @@
                 }
             }
         },
-        "proj1taskdefbackup": {
+        "ECSKongTask": {
             "Type": "AWS::ECS::TaskDefinition",
             "Properties": {
                 "ContainerDefinitions": [
