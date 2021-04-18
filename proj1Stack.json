@@ -79,8 +79,8 @@
         "ECSTG": {
             "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
             "Properties": {
+                "Port":10,
                 "Protocol": "HTTP",
-                "Port": 80,
                 "Name": "ECSTG",
                 "VpcId": {
                     "Ref": "ECSVpc"
@@ -90,6 +90,32 @@
                 "AWS::CloudFormation::Designer": {
                     "id": "a26ad1d5-7ddb-4be2-af65-71c1d7e722a2"
                 }
+            }
+        },
+        "ECSALBListenerRule": {
+            "Type": "AWS::ElasticLoadBalancingV2::ListenerRule",
+            "DependsOn": "ALBListener",
+            "Properties": {
+                "Actions": [
+                    {
+                        "Type": "forward",
+                        "TargetGroupArn": {
+                            "Ref": "ECSTG"
+                        }
+                    }
+                ],
+                "Conditions": [
+                    {
+                        "Field": "path-pattern",
+                        "Values": [
+                            "/"
+                        ]
+                    }
+                ],
+                "ListenerArn": {
+                    "Ref": "ALBListener"
+                },
+                "Priority": 1
             }
         },
         "ALBListener": {
