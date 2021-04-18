@@ -76,22 +76,6 @@
                 }
             }
         },
-        "proj1CapProvider": {
-            "Type": "AWS::ECS::CapacityProvider",
-            "Properties": {
-                "AutoScalingGroupProvider": {
-                    "AutoScalingGroupArn": {
-                        "Ref": "ECSAutoScalingGroup"
-                    }
-                },
-                "Name": "proj1CapProvider"
-            },
-            "Metadata": {
-                "AWS::CloudFormation::Designer": {
-                    "id": "54ed43b9-89bb-4903-bcb7-bfcaef459088"
-                }
-            }
-        },
         "ECSTG": {
             "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
             "Properties": {
@@ -212,7 +196,7 @@
                 "Cluster": {
                     "Ref": "ECSCluster"
                 },
-                "DesiredCount": 0,
+                "DesiredCount": 1,
                 "LaunchType": "EC2",
                 "TaskDefinition": {
                     "Ref": "ECStaskdefinition"
@@ -857,7 +841,39 @@
             }
         }
     },
-    "Outputs": {},
+    "Outputs": {
+        "ecsservice": {
+            "Value": {
+                "Ref": "ECSservice"
+            }
+        },
+        "ecscluster": {
+            "Value": {
+                "Ref": "ECSCluster"
+            }
+        },
+        "ECSALB": {
+            "Description": "Your ALB DNS URL",
+            "Value": {
+                "Fn::Join": [
+                    "",
+                    [
+                        {
+                            "Fn::GetAtt": [
+                                "ECSALB",
+                                "DNSName"
+                            ]
+                        }
+                    ]
+                ]
+            }
+        },
+        "taskdef": {
+            "Value": {
+                "Ref": "ECStaskdefinition"
+            }
+        }
+    },
     "Metadata": {
         "AWS::CloudFormation::Designer": {
             "acbe6b9a-b145-4464-8a92-37500e608772": {
