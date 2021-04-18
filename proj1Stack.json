@@ -136,7 +136,7 @@
             "Properties": {
                 "SecurityGroups": [
                     {
-                        "Ref": "containerSG"
+                        "Ref": "EcsSecurityGroup"
                     }
                 ],
                 "Subnets": [
