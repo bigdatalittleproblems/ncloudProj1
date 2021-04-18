@@ -481,9 +481,9 @@
                 "GroupId": {
                     "Ref": "EcsSecurityGroup"
                 },
-                "IpProtocol": "tcp",
-                "FromPort": "31000",
-                "ToPort": "61000",
+                "IpProtocol": "-1",
+                "FromPort": -1,
+                "ToPort": -1,
                 "SourceSecurityGroupId": {
                     "Ref": "EcsSecurityGroup"
                 }
