@@ -463,6 +463,32 @@
                 }
             }
         },
+        "EcsSecurityGroupSSHinbound": {
+            "Type": "AWS::EC2::SecurityGroupIngress",
+            "Properties": {
+                "GroupId": {
+                    "Ref": "EcsSecurityGroup"
+                },
+                "IpProtocol": "tcp",
+                "FromPort": "22",
+                "ToPort": "22",
+                "CidrIp": "0.0.0.0/0"
+            }
+        },
+        "EcsSecurityGroupALBports": {
+            "Type": "AWS::EC2::SecurityGroupIngress",
+            "Properties": {
+                "GroupId": {
+                    "Ref": "EcsSecurityGroup"
+                },
+                "IpProtocol": "tcp",
+                "FromPort": "31000",
+                "ToPort": "61000",
+                "SourceSecurityGroupId": {
+                    "Ref": "EcsSecurityGroup"
+                }
+            }
+        },
         "containerSG": {
             "Type": "AWS::EC2::SecurityGroup",
             "Properties": {
@@ -495,6 +521,7 @@
         "Subnet1": {
             "Type": "AWS::EC2::Subnet",
             "Properties": {
+                "MapPublicIpOnLaunch": true,
                 "AvailabilityZone": {
                     "Fn::Select": [
                         0,
@@ -535,6 +562,7 @@
         "Subnet2": {
             "Type": "AWS::EC2::Subnet",
             "Properties": {
+                "MapPublicIpOnLaunch": true,
                 "AvailabilityZone": {
                     "Fn::Select": [
                         1,
