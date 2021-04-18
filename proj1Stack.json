@@ -99,7 +99,7 @@
                 "Port": 80,
                 "Name": "ECSTG",
                 "VpcId": {
-                    "Ref": "Vpc"
+                    "Ref": "ECSVpc"
                 }
             },
             "Metadata": {
@@ -153,6 +153,49 @@
                 "AWS::CloudFormation::Designer": {
                     "id": "bc7b922b-b1b9-4c2b-9afd-a0ca0e36bc59"
                 }
+            }
+        },
+        "ECSServiceRole": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+                "AssumeRolePolicyDocument": {
+                    "Statement": [
+                        {
+                            "Effect": "Allow",
+                            "Principal": {
+                                "Service": [
+                                    "ecs.amazonaws.com"
+                                ]
+                            },
+                            "Action": [
+                                "sts:AssumeRole"
+                            ]
+                        }
+                    ]
+                },
+                "Path": "/",
+                "Policies": [
+                    {
+                        "PolicyName": "ecs-service",
+                        "PolicyDocument": {
+                            "Statement": [
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "elasticloadbalancing:DeregisterInstancesFromLoadBalancer",
+                                        "elasticloadbalancing:DeregisterTargets",
+                                        "elasticloadbalancing:Describe*",
+                                        "elasticloadbalancing:RegisterInstancesWithLoadBalancer",
+                                        "elasticloadbalancing:RegisterTargets",
+                                        "ec2:Describe*",
+                                        "ec2:AuthorizeSecurityGroupIngress"
+                                    ],
+                                    "Resource": "*"
+                                }
+                            ]
+                        }
+                    }
+                ]
             }
         },
         "ECSservice": {
@@ -408,7 +451,7 @@
                 }
             }
         },
-        "Vpc": {
+        "ECSVpc": {
             "Type": "AWS::EC2::VPC",
             "Properties": {
                 "CidrBlock": "10.0.0.0/16"
@@ -435,7 +478,7 @@
                     }
                 ],
                 "VpcId": {
-                    "Ref": "Vpc"
+                    "Ref": "ECSVpc"
                 }
             },
             "Metadata": {
@@ -464,7 +507,7 @@
                     }
                 ],
                 "VpcId": {
-                    "Ref": "Vpc"
+                    "Ref": "ECSVpc"
                 }
             },
             "Metadata": {
@@ -487,7 +530,7 @@
                     ]
                 },
                 "VpcId": {
-                    "Ref": "Vpc"
+                    "Ref": "ECSVpc"
                 },
                 "CidrBlock": {
                     "Fn::Select": [
@@ -496,7 +539,7 @@
                             "Fn::Cidr": [
                                 {
                                     "Fn::GetAtt": [
-                                        "Vpc",
+                                        "ECSVpc",
                                         "CidrBlock"
                                     ]
                                 },
@@ -527,7 +570,7 @@
                     ]
                 },
                 "VpcId": {
-                    "Ref": "Vpc"
+                    "Ref": "ECSVpc"
                 },
                 "CidrBlock": {
                     "Fn::Select": [
@@ -536,7 +579,7 @@
                             "Fn::Cidr": [
                                 {
                                     "Fn::GetAtt": [
-                                        "Vpc",
+                                        "ECSVpc",
                                         "CidrBlock"
                                     ]
                                 },
@@ -567,7 +610,7 @@
                     ]
                 },
                 "VpcId": {
-                    "Ref": "Vpc"
+                    "Ref": "ECSVpc"
                 },
                 "CidrBlock": {
                     "Fn::Select": [
@@ -576,7 +619,7 @@
                             "Fn::Cidr": [
                                 {
                                     "Fn::GetAtt": [
-                                        "Vpc",
+                                        "ECSVpc",
                                         "CidrBlock"
                                     ]
                                 },
@@ -607,7 +650,7 @@
                     ]
                 },
                 "VpcId": {
-                    "Ref": "Vpc"
+                    "Ref": "ECSVpc"
                 },
                 "CidrBlock": {
                     "Fn::Select": [
@@ -616,7 +659,7 @@
                             "Fn::Cidr": [
                                 {
                                     "Fn::GetAtt": [
-                                        "Vpc",
+                                        "ECSVpc",
                                         "CidrBlock"
                                     ]
                                 },
@@ -637,7 +680,7 @@
             "Type": "AWS::EC2::RouteTable",
             "Properties": {
                 "VpcId": {
-                    "Ref": "Vpc"
+                    "Ref": "ECSVpc"
                 }
             },
             "Metadata": {
@@ -656,169 +699,169 @@
                     }
                 ]
             }
-        }
-    },
-    "EC2Role": {
-        "Type": "AWS::IAM::Role",
-        "Properties": {
-            "AssumeRolePolicyDocument": {
-                "Statement": [
-                    {
-                        "Effect": "Allow",
-                        "Principal": {
-                            "Service": [
-                                "ec2.amazonaws.com"
+        },
+        "EC2Role": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+                "AssumeRolePolicyDocument": {
+                    "Statement": [
+                        {
+                            "Effect": "Allow",
+                            "Principal": {
+                                "Service": [
+                                    "ec2.amazonaws.com"
+                                ]
+                            },
+                            "Action": [
+                                "sts:AssumeRole"
                             ]
-                        },
-                        "Action": [
-                            "sts:AssumeRole"
-                        ]
+                        }
+                    ]
+                },
+                "Path": "/",
+                "Policies": [
+                    {
+                        "PolicyName": "ecs-service",
+                        "PolicyDocument": {
+                            "Statement": [
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "ecs:CreateCluster",
+                                        "ecs:DeregisterContainerInstance",
+                                        "ecs:DiscoverPollEndpoint",
+                                        "ecs:Poll",
+                                        "ecs:RegisterContainerInstance",
+                                        "ecs:StartTelemetrySession",
+                                        "ecs:Submit*",
+                                        "logs:CreateLogStream",
+                                        "logs:PutLogEvents"
+                                    ],
+                                    "Resource": "*"
+                                }
+                            ]
+                        }
                     }
                 ]
-            },
-            "Path": "/",
-            "Policies": [
-                {
-                    "PolicyName": "ecs-service",
-                    "PolicyDocument": {
-                        "Statement": [
-                            {
-                                "Effect": "Allow",
-                                "Action": [
-                                    "ecs:CreateCluster",
-                                    "ecs:DeregisterContainerInstance",
-                                    "ecs:DiscoverPollEndpoint",
-                                    "ecs:Poll",
-                                    "ecs:RegisterContainerInstance",
-                                    "ecs:StartTelemetrySession",
-                                    "ecs:Submit*",
-                                    "logs:CreateLogStream",
-                                    "logs:PutLogEvents"
-                                ],
-                                "Resource": "*"
-                            }
-                        ]
-                    }
+            }
+        },
+        "privatert": {
+            "Type": "AWS::EC2::RouteTable",
+            "Properties": {
+                "VpcId": {
+                    "Ref": "ECSVpc"
                 }
-            ]
-        }
-    },
-    "privatert": {
-        "Type": "AWS::EC2::RouteTable",
-        "Properties": {
-            "VpcId": {
-                "Ref": "Vpc"
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "2175295f-32b0-4237-8e5a-6ccc085502ac"
+                }
             }
         },
-        "Metadata": {
-            "AWS::CloudFormation::Designer": {
-                "id": "2175295f-32b0-4237-8e5a-6ccc085502ac"
-            }
-        }
-    },
-    "mainigw": {
-        "Type": "AWS::EC2::InternetGateway",
-        "Properties": {},
-        "Metadata": {
-            "AWS::CloudFormation::Designer": {
-                "id": "acbe6b9a-b145-4464-8a92-37500e608772"
-            }
-        }
-    },
-    "mainroute": {
-        "Type": "AWS::EC2::Route",
-        "Properties": {
-            "RouteTableId": {
-                "Ref": "publicrt"
-            },
-            "GatewayId": {
-                "Ref": "mainigw"
-            },
-            "DestinationCidrBlock": "0.0.0.0/0"
-        },
-        "Metadata": {
-            "AWS::CloudFormation::Designer": {
-                "id": "b5105be6-4684-467d-b9cd-d3bbd98f9025"
-            }
-        }
-    },
-    "AttachGateway": {
-        "Type": "AWS::EC2::VPCGatewayAttachment",
-        "Properties": {
-            "VpcId": {
-                "Ref": "Vpc"
-            },
-            "InternetGatewayId": {
-                "Ref": "mainigw"
+        "mainigw": {
+            "Type": "AWS::EC2::InternetGateway",
+            "Properties": {},
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "acbe6b9a-b145-4464-8a92-37500e608772"
+                }
             }
         },
-        "Metadata": {
-            "AWS::CloudFormation::Designer": {
-                "id": "6dd159fd-7f39-4835-8e91-1daa430254b8"
-            }
-        }
-    },
-    "subnetassociation1": {
-        "Type": "AWS::EC2::SubnetRouteTableAssociation",
-        "Properties": {
-            "SubnetId": {
-                "Ref": "Subnet1"
+        "mainroute": {
+            "Type": "AWS::EC2::Route",
+            "Properties": {
+                "RouteTableId": {
+                    "Ref": "publicrt"
+                },
+                "GatewayId": {
+                    "Ref": "mainigw"
+                },
+                "DestinationCidrBlock": "0.0.0.0/0"
             },
-            "RouteTableId": {
-                "Ref": "publicrt"
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "b5105be6-4684-467d-b9cd-d3bbd98f9025"
+                }
             }
         },
-        "Metadata": {
-            "AWS::CloudFormation::Designer": {
-                "id": "439b87ae-7a72-4822-b647-1c4704fef94e"
-            }
-        }
-    },
-    "subnetassociation2": {
-        "Type": "AWS::EC2::SubnetRouteTableAssociation",
-        "Properties": {
-            "SubnetId": {
-                "Ref": "Subnet2"
+        "AttachGateway": {
+            "Type": "AWS::EC2::VPCGatewayAttachment",
+            "Properties": {
+                "VpcId": {
+                    "Ref": "ECSVpc"
+                },
+                "InternetGatewayId": {
+                    "Ref": "mainigw"
+                }
             },
-            "RouteTableId": {
-                "Ref": "publicrt"
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "6dd159fd-7f39-4835-8e91-1daa430254b8"
+                }
             }
         },
-        "Metadata": {
-            "AWS::CloudFormation::Designer": {
-                "id": "1435bb5d-f29b-44f4-92f3-9ebe0c447b52"
-            }
-        }
-    },
-    "subnetassociationPrivate1": {
-        "Type": "AWS::EC2::SubnetRouteTableAssociation",
-        "Properties": {
-            "SubnetId": {
-                "Ref": "privatesubnet1"
+        "subnetassociation1": {
+            "Type": "AWS::EC2::SubnetRouteTableAssociation",
+            "Properties": {
+                "SubnetId": {
+                    "Ref": "Subnet1"
+                },
+                "RouteTableId": {
+                    "Ref": "publicrt"
+                }
             },
-            "RouteTableId": {
-                "Ref": "privatert"
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "439b87ae-7a72-4822-b647-1c4704fef94e"
+                }
             }
         },
-        "Metadata": {
-            "AWS::CloudFormation::Designer": {
-                "id": "2f4dd485-1c1c-4e49-9e66-9292e572cbb0"
-            }
-        }
-    },
-    "subnetassociationPrivate2": {
-        "Type": "AWS::EC2::SubnetRouteTableAssociation",
-        "Properties": {
-            "SubnetId": {
-                "Ref": "privatesubnet2"
+        "subnetassociation2": {
+            "Type": "AWS::EC2::SubnetRouteTableAssociation",
+            "Properties": {
+                "SubnetId": {
+                    "Ref": "Subnet2"
+                },
+                "RouteTableId": {
+                    "Ref": "publicrt"
+                }
             },
-            "RouteTableId": {
-                "Ref": "privatert"
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "1435bb5d-f29b-44f4-92f3-9ebe0c447b52"
+                }
             }
         },
-        "Metadata": {
-            "AWS::CloudFormation::Designer": {
-                "id": "d41140ef-1bfc-4be8-a7e4-d07f7dffde68"
+        "subnetassociationPrivate1": {
+            "Type": "AWS::EC2::SubnetRouteTableAssociation",
+            "Properties": {
+                "SubnetId": {
+                    "Ref": "privatesubnet1"
+                },
+                "RouteTableId": {
+                    "Ref": "privatert"
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "2f4dd485-1c1c-4e49-9e66-9292e572cbb0"
+                }
+            }
+        },
+        "subnetassociationPrivate2": {
+            "Type": "AWS::EC2::SubnetRouteTableAssociation",
+            "Properties": {
+                "SubnetId": {
+                    "Ref": "privatesubnet2"
+                },
+                "RouteTableId": {
+                    "Ref": "privatert"
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "d41140ef-1bfc-4be8-a7e4-d07f7dffde68"
+                }
             }
         }
     },
