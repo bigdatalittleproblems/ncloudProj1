@@ -305,14 +305,9 @@
                             {
                                 "ContainerPort": "8000"
                             },
-                            {
-                                "ContainerPort": "5432"
-                            },
+                           
                             {
                                 "ContainerPort": "8001"
-                            },
-                            {
-                                "ContainerPort": "8443"
                             }
                         ],
                         "Environment": [
