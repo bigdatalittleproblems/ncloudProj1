@@ -332,6 +332,10 @@
                             {
                                 "Name": "KONG_ADMIN_LISTEN_ADDRESS",
                                 "Value": "0.0.0.0"
+                            },
+                            {
+                                "Name": "KONG_MIGRATE",
+                                "Value": "yes"
                             }
                         ]
                     },
