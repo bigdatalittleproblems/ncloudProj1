@@ -79,6 +79,11 @@
         "ECSTG": {
             "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
             "Properties": {
+                "HealthCheckIntervalSeconds": 10,
+                "HealthCheckPath": "/",
+                "HealthCheckProtocol": "HTTP",
+                "HealthCheckTimeoutSeconds": 5,
+                "HealthyThresholdCount": 2,
                 "Port":10,
                 "Protocol": "HTTP",
                 "Name": "ECSTG",
@@ -229,8 +234,8 @@
                 },
                 "LoadBalancers": [
                     {
-                        "ContainerName": "kong",
-                        "ContainerPort": 8000,
+                        "ContainerName": "flask",
+                        "ContainerPort": 5000,
                         "TargetGroupArn": {
                             "Ref": "ECSTG"
                         }
