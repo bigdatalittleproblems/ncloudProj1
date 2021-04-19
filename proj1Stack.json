@@ -1,6 +1,6 @@
 {
     "AWSTemplateFormatVersion": "2010-09-09",
-    "Description": "Proj1 nCloud CloudFormation created by Christian Ramirez Using Flask",
+    "Description": "Proj1 nCloud CloudFormation created by Christian Ramirez Using Kong",
     "Parameters": {
         "KPName": {
             "Type": "AWS::EC2::KeyPair::KeyName",
@@ -229,8 +229,8 @@
                 },
                 "LoadBalancers": [
                     {
-                        "ContainerName": "flask",
-                        "ContainerPort": 5000,
+                        "ContainerName": "kong",
+                        "ContainerPort": 8000,
                         "TargetGroupArn": {
                             "Ref": "ECSTG"
                         }
