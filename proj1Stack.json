@@ -348,30 +348,6 @@
                                 "ContainerPort": "5000"
                             }
                         ]
-                    },
-                    {
-                        "MemoryReservation": 128,
-                        "Image": "docker.io/bitnami/postgresql:latest",
-                        "Name": "postgresql",
-                        "PortMappings": [
-                            {
-                                "ContainerPort": "5432"
-                            }
-                        ],
-                        "Environment": [
-                            {
-                                "Name": "POSTGRESQL_USERNAME",
-                                "Value": "kong"
-                            },
-                            {
-                                "Name": "POSTGRESQL_PASSWORD",
-                                "Value": "bitnami"
-                            },
-                            {
-                                "Name": "POSTGRESQL_DATABASE",
-                                "Value": "kong"
-                            }
-                        ]
                     }
                 ]
             },
