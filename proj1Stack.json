@@ -922,7 +922,12 @@
             "Properties": {
                 "AllocatedStorage": "30",
                 "AllowMajorVersionUpgrade": "False",
-                "AvailabilityZone": "us-east-1a",
+                "AvailabilityZone": {
+                    "Fn::GetAtt": [
+                        "Subnet1",
+                        "AvailabilityZone"
+                    ]
+                },
                 "BackupRetentionPeriod": 1,
                 "DBName": "kong",
                 "DeletionProtection": "False",
@@ -942,10 +947,10 @@
                 "DBSubnetGroupDescription": "Subnet where Kong will be Deployed",
                 "SubnetIds": [
                     {
-                        "Ref": "publicsubnet1"
+                        "Ref": "Subnet1"
                     },
                     {
-                        "Ref": "publicsubnet2"
+                        "Ref": "Subnet2"
                     }
                 ]
             }
@@ -981,6 +986,14 @@
         "taskdef": {
             "Value": {
                 "Ref": "ECStaskdefinition"
+            }
+        },
+        "kongdb": {
+            "Value": {
+                "Fn::GetAtt": [
+                    "kongdb",
+                    "Endpoint.Address"
+                ]
             }
         }
     },
