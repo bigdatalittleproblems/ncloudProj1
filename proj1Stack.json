@@ -1,6 +1,6 @@
 {
     "AWSTemplateFormatVersion": "2010-09-09",
-    "Description": "Proj1 nCloud CloudFormation created by Christian Ramirez",
+    "Description": "Proj1 nCloud CloudFormation created by Christian Ramirez Using Flask",
     "Parameters": {
         "KPName": {
             "Type": "AWS::EC2::KeyPair::KeyName",
