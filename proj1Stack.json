@@ -889,28 +889,6 @@
                 }
             }
         },
-        "dbSG": {
-            "Type": "AWS::EC2::SecurityGroup",
-            "Properties": {
-                "GroupDescription": "SG For DB",
-                "GroupName": "dbSG",
-                "SecurityGroupIngress": [
-                    {
-                        "IpProtocol": "-1",
-                        "SourceSecurityGroupId": {
-                            "Ref": "EcsSecurityGroup"
-                        },
-                        "FromPort": -1,
-                        "ToPort": -1
-                    }
-                ]
-            },
-            "Metadata": {
-                "AWS::CloudFormation::Designer": {
-                    "id": "9234ed59-9d62-47ca-8259-c355e4d3dd87"
-                }
-            }
-        },
         "kongdb": {
             "Type": "AWS::RDS::DBInstance",
             "Properties": {
@@ -923,7 +901,7 @@
                 "MasterUsername": "kong",
                 "MasterUserPassword": "pXDKPTsA3Kbe3F7qcMJT",
                 "MultiAZ": "False",
-                "DBInstanceClass": "db.t3.micro"
+                "DBInstanceClass": "db.t3.micro",
             }
         }
     },
