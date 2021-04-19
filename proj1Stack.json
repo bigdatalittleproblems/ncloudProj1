@@ -922,37 +922,14 @@
             "Properties": {
                 "AllocatedStorage": "30",
                 "AllowMajorVersionUpgrade": "False",
-                "AvailabilityZone": {
-                    "Fn::GetAtt": [
-                        "Subnet1",
-                        "AvailabilityZone"
-                    ]
-                },
-                "BackupRetentionPeriod": 1,
+                "BackupRetentionPeriod": 0,
                 "DBName": "kong",
                 "DeletionProtection": "False",
                 "Engine": "postgres",
                 "MasterUsername": "kong",
                 "MasterUserPassword": "pXDKPTsA3Kbe3F7qcMJT",
                 "MultiAZ": "False",
-                "DBSubnetGroupName": {
-                    "Ref": "kongDBSubnetGroup"
-                },
                 "DBInstanceClass": "db.t3.micro"
-            }
-        },
-        "kongDBSubnetGroup": {
-            "Type": "AWS::RDS::DBSubnetGroup",
-            "Properties": {
-                "DBSubnetGroupDescription": "Subnet where Kong will be Deployed",
-                "SubnetIds": [
-                    {
-                        "Ref": "Subnet1"
-                    },
-                    {
-                        "Ref": "Subnet2"
-                    }
-                ]
             }
         }
     },
