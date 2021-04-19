@@ -322,7 +322,12 @@
                             },
                             {
                                 "Name": "KONG_PG_HOST",
-                                "Value": "postgresql"
+                                "Value": {
+                                    "Fn::GetAtt": [
+                                        "kongdb",
+                                        "Endpoint.Address"
+                                    ]
+                                }
                             },
                             {
                                 "Name": "KONG_PG_PASSWORD",
@@ -910,6 +915,39 @@
                 "AWS::CloudFormation::Designer": {
                     "id": "d41140ef-1bfc-4be8-a7e4-d07f7dffde68"
                 }
+            }
+        },
+        "kongdb": {
+            "Type": "AWS::RDS::DBInstance",
+            "Properties": {
+                "AllocatedStorage": "30",
+                "AllowMajorVersionUpgrade": "False",
+                "AvailabilityZone": "us-east-1a",
+                "BackupRetentionPeriod": 1,
+                "DBName": "kong",
+                "DeletionProtection": "False",
+                "Engine": "postgres",
+                "MasterUsername": "kong",
+                "MasterUserPassword": "pXDKPTsA3Kbe3F7qcMJT",
+                "MultiAZ": "False",
+                "DBSubnetGroupName": {
+                    "Ref": "kongDBSubnetGroup"
+                },
+                "DBInstanceClass": "db.t3.micro"
+            }
+        },
+        "kongDBSubnetGroup": {
+            "Type": "AWS::RDS::DBSubnetGroup",
+            "Properties": {
+                "DBSubnetGroupDescription": "Subnet where Kong will be Deployed",
+                "SubnetIds": [
+                    {
+                        "Ref": "publicsubnet1"
+                    },
+                    {
+                        "Ref": "publicsubnet2"
+                    }
+                ]
             }
         }
     },
