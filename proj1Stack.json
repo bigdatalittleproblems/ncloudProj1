@@ -331,7 +331,7 @@
                             },
                             {
                                 "Name": "KONG_PG_PASSWORD",
-                                "Value": "bitnami"
+                                "Value": "pXDKPTsA3Kbe3F7qcMJT"
                             },
                             {
                                 "Name": "KONG_ADMIN_LISTEN_ADDRESS",
