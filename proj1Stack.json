@@ -229,8 +229,8 @@
                 },
                 "LoadBalancers": [
                     {
-                        "ContainerName": "flask",
-                        "ContainerPort": 5000,
+                        "ContainerName": "kong",
+                        "ContainerPort": 8000,
                         "TargetGroupArn": {
                             "Ref": "ECSTG"
                         }
@@ -299,7 +299,7 @@
                 "ContainerDefinitions": [
                     {
                         "MemoryReservation": 128,
-                        "Image": "docker.io/bitnami/kong:latest",
+                        "Image": "public.ecr.aws/v1i0e6j5/kong:latest",
                         "Name": "kong",
                         "PortMappings": [
                             {
@@ -346,7 +346,7 @@
                     },
                     {
                         "MemoryReservation": 128,
-                        "Image": "docker.io/bitnami/postgresql:latest",
+                        "Image": "public.ecr.aws/v1i0e6j5/postgresql:latest",
                         "Name": "postgresql",
                         "PortMappings": [
                             {
