@@ -317,10 +317,6 @@
                         ],
                         "Environment": [
                             {
-                                "Name": "KONG_MIGRATE",
-                                "Value": "yes"
-                            },
-                            {
                                 "Name": "KONG_PG_HOST",
                                 "Value": {
                                     "Fn::GetAtt": [
@@ -890,6 +886,28 @@
             "Metadata": {
                 "AWS::CloudFormation::Designer": {
                     "id": "d41140ef-1bfc-4be8-a7e4-d07f7dffde68"
+                }
+            }
+        },
+        "dbSG": {
+            "Type": "AWS::EC2::SecurityGroup",
+            "Properties": {
+                "GroupDescription": "SG For DB",
+                "GroupName": "dbSG",
+                "SecurityGroupIngress": [
+                    {
+                        "IpProtocol": "-1",
+                        "SourceSecurityGroupId": {
+                            "Ref": "EcsSecurityGroup"
+                        },
+                        "FromPort": -1,
+                        "ToPort": -1
+                    }
+                ]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "9234ed59-9d62-47ca-8259-c355e4d3dd87"
                 }
             }
         },
