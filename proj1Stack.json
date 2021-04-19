@@ -229,8 +229,8 @@
                 },
                 "LoadBalancers": [
                     {
-                        "ContainerName": "kong",
-                        "ContainerPort": 8000,
+                        "ContainerName": "flask",
+                        "ContainerPort": 5000,
                         "TargetGroupArn": {
                             "Ref": "ECSTG"
                         }
@@ -295,6 +295,7 @@
         "ECStaskdefinition": {
             "Type": "AWS::ECS::TaskDefinition",
             "Properties": {
+                "NetworkMode":"bridge",
                 "ContainerDefinitions": [
                     {
                         "MemoryReservation": 128,
