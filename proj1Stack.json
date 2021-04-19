@@ -79,12 +79,7 @@
         "ECSTG": {
             "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
             "Properties": {
-                "HealthCheckIntervalSeconds": 10,
-                "HealthCheckPath": "/",
-                "HealthCheckProtocol": "HTTP",
-                "HealthCheckTimeoutSeconds": 5,
-                "HealthyThresholdCount": 2,
-                "Port":10,
+                "Port": 10,
                 "Protocol": "HTTP",
                 "Name": "ECSTG",
                 "VpcId": {
@@ -300,7 +295,7 @@
         "ECStaskdefinition": {
             "Type": "AWS::ECS::TaskDefinition",
             "Properties": {
-                "NetworkMode":"bridge",
+                "NetworkMode": "bridge",
                 "ContainerDefinitions": [
                     {
                         "MemoryReservation": 128,
