@@ -851,7 +851,7 @@
                 }
             }
         },
-        "AttachGateway": {
+        "VPCGatewayAttach": {
             "Type": "AWS::EC2::VPCGatewayAttachment",
             "Properties": {
                 "VpcId": {
