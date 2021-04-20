@@ -708,7 +708,7 @@
             "Properties": {
                 "AvailabilityZone": {
                     "Fn::Select": [
-                        0,
+                        1,
                         {
                             "Fn::GetAZs": {
                                 "Ref": "AWS::Region"
