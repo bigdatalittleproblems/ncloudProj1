@@ -540,7 +540,7 @@
         "Subnet1": {
             "Type": "AWS::EC2::Subnet",
             "Properties": {
-                "MapPublicIpOnLaunch": false,
+                "MapPublicIpOnLaunch": true,
                 "AvailabilityZone": {
                     "Fn::Select": [
                         0,
@@ -581,7 +581,7 @@
         "Subnet2": {
             "Type": "AWS::EC2::Subnet",
             "Properties": {
-                "MapPublicIpOnLaunch": false,
+                "MapPublicIpOnLaunch": true,
                 "AvailabilityZone": {
                     "Fn::Select": [
                         1,
