@@ -1,0 +1,10 @@
+https://docs.konghq.com/getting-started-guide/2.4.x/expose-services/
+
+curl -i -X POST http://localhost:8001/services \
+  --data name=example_service \
+  --data url='http://google.com'
+
+
+curl -i -X POST http://localhost:8001/services/example_service/routes \
+  --data 'paths[]=/' \
+  --data name=health
