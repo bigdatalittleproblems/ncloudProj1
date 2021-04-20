@@ -936,6 +936,26 @@
                 }
             }
         },
+        "dbSecurityGroup": {
+            "Type": "AWS::EC2::SecurityGroup",
+            "Properties": {
+                "GroupDescription": "master SG for Proj1",
+                "GroupName": "proj1sg",
+                "SecurityGroupIngress": [
+                    {
+                        "IpProtocol": "-1",
+                        "SourceSecurityGroupId": {
+                            "Ref": "EcsSecurityGroup"
+                        },
+                        "FromPort": -1,
+                        "ToPort": -1
+                    }
+                ],
+                "VpcId": {
+                    "Ref": "ECSVpc"
+                }
+            }
+        },
         "kongdb": {
             "Type": "AWS::RDS::DBInstance",
             "Properties": {
@@ -951,6 +971,9 @@
                 "DBInstanceClass": "db.t3.micro",
                 "DBSubnetGroupName": {
                     "Ref": "kongDBSubnetGroup"
+                },
+                "VPCSecurityGroups": {
+                    "Ref": "dbSecurityGroup"
                 }
             }
         },
