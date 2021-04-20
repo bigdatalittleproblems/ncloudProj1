@@ -947,20 +947,20 @@
                 "DBSubnetGroupName": {
                     "Ref": "kongDBSubnetGroup"
                 }
-            },
-            "kongDBSubnetGroup": {
-                "Type": "AWS::RDS::DBSubnetGroup",
-                "Properties": {
-                    "DBSubnetGroupDescription": "Subnet where Kong will be Deployed",
-                    "SubnetIds": [
-                        {
-                            "Ref": "PrivateSubnet1"
-                        },
-                        {
-                            "Ref": "PrivateSubnet2"
-                        }
-                    ]
-                }
+            }
+        },
+        "kongDBSubnetGroup": {
+            "Type": "AWS::RDS::DBSubnetGroup",
+            "Properties": {
+                "DBSubnetGroupDescription": "Subnet where Kong will be Deployed",
+                "SubnetIds": [
+                    {
+                        "Ref": "PrivateSubnet1"
+                    },
+                    {
+                        "Ref": "PrivateSubnet2"
+                    }
+                ]
             }
         }
     },
