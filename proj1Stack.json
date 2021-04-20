@@ -972,9 +972,9 @@
                 "DBSubnetGroupName": {
                     "Ref": "kongDBSubnetGroup"
                 },
-                "VPCSecurityGroups": {
+                "VPCSecurityGroups": [{
                     "Ref": "dbSecurityGroup"
-                }
+                }]
             }
         },
         "kongDBSubnetGroup": {
