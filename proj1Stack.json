@@ -939,8 +939,8 @@
         "dbSecurityGroup": {
             "Type": "AWS::EC2::SecurityGroup",
             "Properties": {
-                "GroupDescription": "master SG for Proj1",
-                "GroupName": "proj1sg",
+                "GroupDescription": "DB Security Group to allow proj1sg",
+                "GroupName": "dbSecurityGroup",
                 "SecurityGroupIngress": [
                     {
                         "IpProtocol": "-1",
