@@ -305,7 +305,6 @@
                             {
                                 "ContainerPort": "8000"
                             },
-                           
                             {
                                 "ContainerPort": "8001"
                             }
@@ -541,7 +540,7 @@
         "Subnet1": {
             "Type": "AWS::EC2::Subnet",
             "Properties": {
-                "MapPublicIpOnLaunch": true,
+                "MapPublicIpOnLaunch": false,
                 "AvailabilityZone": {
                     "Fn::Select": [
                         0,
@@ -582,7 +581,7 @@
         "Subnet2": {
             "Type": "AWS::EC2::Subnet",
             "Properties": {
-                "MapPublicIpOnLaunch": true,
+                "MapPublicIpOnLaunch": false,
                 "AvailabilityZone": {
                     "Fn::Select": [
                         1,
@@ -620,7 +619,51 @@
                 }
             }
         },
-        "privatesubnet1": {
+        "NAT": {
+            "Type": "AWS::EC2::NatGateway",
+            "Properties": {
+                "AllocationId": {
+                    "Fn::GetAtt": [
+                        "EIP",
+                        "AllocationId"
+                    ]
+                },
+                "SubnetId": {
+                    "Ref": "Subnet1"
+                }
+            }
+        },
+        "IgwAttachment": {
+            "Type": "AWS::EC2::VPCGatewayAttachment",
+            "Properties": {
+                "InternetGatewayId": {
+                    "Ref": "mainigw"
+                },
+                "VpcId": {
+                    "Ref": "ECSVpc"
+                }
+            }
+        },
+        "EIP": {
+            "DependsOn": "VPCGatewayAttach",
+            "Type": "AWS::EC2::EIP",
+            "Properties": {
+                "Domain": "vpc"
+            }
+        },
+        "PrivateRT": {
+            "Type": "AWS::EC2::Route",
+            "Properties": {
+                "RouteTableId": {
+                    "Ref": "privatert"
+                },
+                "DestinationCidrBlock": "0.0.0.0/0",
+                "NatGatewayId": {
+                    "Ref": "NAT"
+                }
+            }
+        },
+        "PrivateSubnet1": {
             "Type": "AWS::EC2::Subnet",
             "Properties": {
                 "AvailabilityZone": {
@@ -660,7 +703,7 @@
                 }
             }
         },
-        "privatesubnet2": {
+        "PrivateSubnet2": {
             "Type": "AWS::EC2::Subnet",
             "Properties": {
                 "AvailabilityZone": {
@@ -860,7 +903,7 @@
             "Type": "AWS::EC2::SubnetRouteTableAssociation",
             "Properties": {
                 "SubnetId": {
-                    "Ref": "privatesubnet1"
+                    "Ref": "PrivateSubnet1"
                 },
                 "RouteTableId": {
                     "Ref": "privatert"
@@ -876,7 +919,7 @@
             "Type": "AWS::EC2::SubnetRouteTableAssociation",
             "Properties": {
                 "SubnetId": {
-                    "Ref": "privatesubnet2"
+                    "Ref": "PrivateSubnet2"
                 },
                 "RouteTableId": {
                     "Ref": "privatert"
@@ -901,6 +944,23 @@
                 "MasterUserPassword": "pXDKPTsA3Kbe3F7qcMJT",
                 "MultiAZ": "False",
                 "DBInstanceClass": "db.t3.micro",
+                "DBSubnetGroupName": {
+                    "Ref": "kongDBSubnetGroup"
+                },
+                "kongDBSubnetGroup": {
+                    "Type": "AWS::RDS::DBSubnetGroup",
+                    "Properties": {
+                        "DBSubnetGroupDescription": "Subnet where Kong will be Deployed",
+                        "SubnetIds": [
+                            {
+                                "Ref": "PrivateSubnet1"
+                            },
+                            {
+                                "Ref": "PrivateSubnet2"
+                            }
+                        ]
+                    }
+                }
             }
         }
     },
