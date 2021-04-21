@@ -211,7 +211,7 @@
                 "ListenerArn": {
                     "Ref": "ALBListener"
                 },
-                "Priority": 1
+                "Priority": 2
             }
         },
         "ECSServiceRole": {
