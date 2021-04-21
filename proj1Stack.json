@@ -187,7 +187,6 @@
                 }
             }
         },
-     
         "AdminALBListenerRule": {
             "Type": "AWS::ElasticLoadBalancingV2::ListenerRule",
             "DependsOn": "ALBListener",
@@ -265,9 +264,6 @@
                 "ECSTG"
             ],
             "Properties": {
-                // "Role": {
-                //     "Ref": "ECSServiceRole"
-                // },
                 "Cluster": {
                     "Ref": "ECSCluster"
                 },
