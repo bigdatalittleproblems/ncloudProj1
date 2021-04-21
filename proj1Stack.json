@@ -187,6 +187,29 @@
                 }
             }
         },
+        "AdminALBListener": {
+            "Type": "AWS::ElasticLoadBalancingV2::Listener",
+            "Properties": {
+                "DefaultActions": [
+                    {
+                        "TargetGroupArn": {
+                            "Ref": "AdminTG"
+                        },
+                        "Type": "forward"
+                    }
+                ],
+                "LoadBalancerArn": {
+                    "Ref": "ECSALB"
+                },
+                "Protocol": "HTTP",
+                "Port": 80
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "45d9f3de-8799-4ac2-b991-d0382bef6d00"
+                }
+            }
+        },
         "AdminALBListenerRule": {
             "Type": "AWS::ElasticLoadBalancingV2::ListenerRule",
             "DependsOn": "AdminALBListener",
