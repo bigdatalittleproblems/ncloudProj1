@@ -274,8 +274,8 @@
                 },
                 "LoadBalancers": [
                     {
-                        "ContainerName": "kong",
-                        "ContainerPort": 8000,
+                        "ContainerName": "flask",
+                        "ContainerPort": 5000,
                         "TargetGroupArn": {
                             "Ref": "ECSTG"
                         }
