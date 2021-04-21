@@ -114,7 +114,7 @@
                         "Field": "path-pattern",
                         "PathPatternConfig": {
                             "Values": [
-                                "/app2/*"
+                                "/kong/*"
                             ]
                         }
                     }
@@ -206,7 +206,7 @@
                         "Field": "path-pattern",
                         "PathPatternConfig": {
                             "Values": [
-                                "/app2/*"
+                                "/flask/*"
                             ]
                         }
                     }
@@ -285,7 +285,7 @@
                         }
                     },
                     {
-                        "ContainerName": "kong",
+                        "ContainerName": "flask",
                         "ContainerPort": 5000,
                         "TargetGroupArn": {
                             "Ref": "AdminTG"
