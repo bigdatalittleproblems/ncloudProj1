@@ -113,7 +113,7 @@
                     {
                         "Field": "path-pattern",
                         "Values": [
-                            "/"
+                            "/app1"
                         ]
                     }
                 ],
@@ -203,7 +203,7 @@
                     {
                         "Field": "path-pattern",
                         "Values": [
-                            "/admin"
+                            "/app2"
                         ]
                     }
                 ],
