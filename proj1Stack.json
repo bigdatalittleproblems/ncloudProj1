@@ -113,7 +113,11 @@
                     {
                         "Field": "path-pattern",
                         "PathPatternConfig": [
-                            "/app1/*"
+                            {
+                                "Values": [
+                                    "/app1/*"
+                                ]
+                            }
                         ]
                     }
                 ],
@@ -203,7 +207,11 @@
                     {
                         "Field": "path-pattern",
                         "PathPatternConfig": [
-                            "/app2/*"
+                            {
+                                "Values": [
+                                    "/app2/*"
+                                ]
+                            }
                         ]
                     }
                 ],
