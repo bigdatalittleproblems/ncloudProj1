@@ -265,9 +265,9 @@
                 "ECSTG"
             ],
             "Properties": {
-                "Role": {
-                    "Ref": "ECSServiceRole"
-                },
+                // "Role": {
+                //     "Ref": "ECSServiceRole"
+                // },
                 "Cluster": {
                     "Ref": "ECSCluster"
                 },
