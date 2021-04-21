@@ -80,7 +80,7 @@
             "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
             "Properties": {
                 "HealthCheckIntervalSeconds": 30,
-                "HealthCheckPath": "/healthcheck",
+                "HealthCheckPath": "/hc",
                 "HealthCheckProtocol": "HTTP",
                 "HealthCheckTimeoutSeconds": 5,
                 "HealthyThresholdCount": 2,
@@ -278,14 +278,14 @@
                 },
                 "LoadBalancers": [
                     {
-                        "ContainerName": "flask",
-                        "ContainerPort": 5000,
+                        "ContainerName": "kong",
+                        "ContainerPort": 8000,
                         "TargetGroupArn": {
                             "Ref": "ECSTG"
                         }
                     },
                     {
-                        "ContainerName": "flask",
+                        "ContainerName": "kong",
                         "ContainerPort": 5000,
                         "TargetGroupArn": {
                             "Ref": "AdminTG"
