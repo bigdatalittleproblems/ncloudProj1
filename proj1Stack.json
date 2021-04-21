@@ -149,6 +149,7 @@
         "ECSALB": {
             "Type": "AWS::ElasticLoadBalancingV2::LoadBalancer",
             "Properties": {
+                "Scheme":"internet-facing",
                 "SecurityGroups": [
                     {
                         "Ref": "EcsSecurityGroup"
