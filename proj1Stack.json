@@ -112,8 +112,8 @@
                 "Conditions": [
                     {
                         "Field": "path-pattern",
-                        "Values": [
-                            "/app1"
+                        "PathPatternConfig": [
+                            "/app1/*"
                         ]
                     }
                 ],
@@ -202,8 +202,8 @@
                 "Conditions": [
                     {
                         "Field": "path-pattern",
-                        "Values": [
-                            "/app2"
+                        "PathPatternConfig": [
+                            "/app2/*"
                         ]
                     }
                 ],
