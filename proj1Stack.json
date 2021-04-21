@@ -112,13 +112,11 @@
                 "Conditions": [
                     {
                         "Field": "path-pattern",
-                        "PathPatternConfig": [
-                            {
-                                "Values": [
-                                    "/app1/*"
-                                ]
-                            }
-                        ]
+                        "PathPatternConfig": {
+                            "Values": [
+                                "/app2/*"
+                            ]
+                        }
                     }
                 ],
                 "ListenerArn": {
@@ -206,13 +204,11 @@
                 "Conditions": [
                     {
                         "Field": "path-pattern",
-                        "PathPatternConfig": [
-                            {
-                                "Values": [
-                                    "/app2/*"
-                                ]
-                            }
-                        ]
+                        "PathPatternConfig": {
+                            "Values": [
+                                "/app2/*"
+                            ]
+                        }
                     }
                 ],
                 "ListenerArn": {
