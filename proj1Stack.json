@@ -80,7 +80,7 @@
             "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
             "Properties": {
                 "HealthCheckIntervalSeconds": 30,
-                "HealthCheckPath": "/hc",
+                "HealthCheckPath": "/",
                 "HealthCheckProtocol": "HTTP",
                 "HealthCheckTimeoutSeconds": 5,
                 "HealthyThresholdCount": 2,
@@ -149,7 +149,7 @@
         "ECSALB": {
             "Type": "AWS::ElasticLoadBalancingV2::LoadBalancer",
             "Properties": {
-                "Scheme":"internet-facing",
+                "Scheme": "internet-facing",
                 "SecurityGroups": [
                     {
                         "Ref": "EcsSecurityGroup"
@@ -169,6 +169,48 @@
                 "AWS::CloudFormation::Designer": {
                     "id": "bc7b922b-b1b9-4c2b-9afd-a0ca0e36bc59"
                 }
+            }
+        },
+        "AdminTG": {
+            "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
+            "Properties": {
+                "HealthCheckIntervalSeconds": 30,
+                "HealthCheckPath": "/",
+                "HealthCheckProtocol": "HTTP",
+                "HealthCheckTimeoutSeconds": 5,
+                "HealthyThresholdCount": 2,
+                "Port": 11,
+                "Protocol": "HTTP",
+                "Name": "AdminTG",
+                "VpcId": {
+                    "Ref": "ECSVpc"
+                }
+            }
+        },
+        "AdminALBListenerRule": {
+            "Type": "AWS::ElasticLoadBalancingV2::ListenerRule",
+            "DependsOn": "AdminALBListener",
+            "Properties": {
+                "Actions": [
+                    {
+                        "Type": "forward",
+                        "TargetGroupArn": {
+                            "Ref": "AdminTG"
+                        }
+                    }
+                ],
+                "Conditions": [
+                    {
+                        "Field": "path-pattern",
+                        "Values": [
+                            "/admin"
+                        ]
+                    }
+                ],
+                "ListenerArn": {
+                    "Ref": "AdminALBListener"
+                },
+                "Priority": 1
             }
         },
         "ECSServiceRole": {
@@ -239,6 +281,13 @@
                         "ContainerPort": 8000,
                         "TargetGroupArn": {
                             "Ref": "ECSTG"
+                        }
+                    },
+                    {
+                        "ContainerName": "flask",
+                        "ContainerPort": 5000,
+                        "TargetGroupArn": {
+                            "Ref": "AdminTG"
                         }
                     }
                 ]
@@ -973,9 +1022,11 @@
                 "DBSubnetGroupName": {
                     "Ref": "kongDBSubnetGroup"
                 },
-                "VPCSecurityGroups": [{
-                    "Ref": "dbSecurityGroup"
-                }]
+                "VPCSecurityGroups": [
+                    {
+                        "Ref": "dbSecurityGroup"
+                    }
+                ]
             }
         },
         "kongDBSubnetGroup": {
