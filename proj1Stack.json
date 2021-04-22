@@ -173,6 +173,24 @@
                 }
             }
         },
+        "AdminALBListener": {
+            "Type": "AWS::ElasticLoadBalancingV2::Listener",
+            "Properties": {
+                "DefaultActions": [
+                    {
+                        "TargetGroupArn": {
+                            "Ref": "AdminTG"
+                        },
+                        "Type": "forward"
+                    }
+                ],
+                "LoadBalancerArn": {
+                    "Ref": "ECSALB"
+                },
+                "Protocol": "HTTP",
+                "Port": 8001
+            }
+        },
         "AdminTG": {
             "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
             "Properties": {
