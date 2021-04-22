@@ -29,7 +29,7 @@
         },
         "DesiredCapacity": {
             "Type": "Number",
-            "Default": "1",
+            "Default": "2",
             "Description": "Number of instances to launch in your ECS cluster."
         }
     },
@@ -295,7 +295,7 @@
                 "Cluster": {
                     "Ref": "ECSCluster"
                 },
-                "DesiredCount": 1,
+                "DesiredCount": 2,
                 "LaunchType": "EC2",
                 "TaskDefinition": {
                     "Ref": "ECStaskdefinition"
