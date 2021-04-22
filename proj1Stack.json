@@ -309,8 +309,8 @@
                         }
                     },
                     {
-                        "ContainerName": "flask",
-                        "ContainerPort": 5000,
+                        "ContainerName": "kong",
+                        "ContainerPort": 8001,
                         "TargetGroupArn": {
                             "Ref": "AdminTG"
                         }
