@@ -84,6 +84,9 @@
                 "HealthCheckProtocol": "HTTP",
                 "HealthCheckTimeoutSeconds": 5,
                 "HealthyThresholdCount": 2,
+                "Matcher": {
+                    "HttpCode": "200-399"
+                },
                 "Port": 10,
                 "Protocol": "HTTP",
                 "Name": "ECSTG",
@@ -114,7 +117,7 @@
                         "Field": "path-pattern",
                         "PathPatternConfig": {
                             "Values": [
-                                "/kong/*"
+                                "/"
                             ]
                         }
                     }
@@ -199,6 +202,9 @@
                 "HealthCheckProtocol": "HTTP",
                 "HealthCheckTimeoutSeconds": 5,
                 "HealthyThresholdCount": 2,
+                "Matcher": {
+                    "HttpCode": "200-399"
+                },
                 "Port": 11,
                 "Protocol": "HTTP",
                 "Name": "AdminTG",
@@ -224,7 +230,7 @@
                         "Field": "path-pattern",
                         "PathPatternConfig": {
                             "Values": [
-                                "/flask/*"
+                                "/"
                             ]
                         }
                     }
