@@ -382,8 +382,7 @@
                         "Image": "docker.io/bitnami/kong:latest",
                         "Name": "kong",
                         "Command": [
-                            "curl -i -X POST http://localhost:8001/services --data name=healthcheck  --data url='http://google.com'",
-                            "curl -i -X POST http://localhost:8001/services/healthcheck/routes --data 'paths[]=/healthcheck' --data name=healthcheck"
+                            "/bin/sh", "curl -i -X POST http://localhost:8001/services --data name=healthcheck  --data url='http://google.com' && curl -i -X POST http://localhost:8001/services/healthcheck/routes --data 'paths[]=/healthcheck' --data name=healthcheck"
                         ],
                         "PortMappings": [
                             {
