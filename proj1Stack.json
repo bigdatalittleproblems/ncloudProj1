@@ -381,10 +381,6 @@
                         "MemoryReservation": 128,
                         "Image": "docker.io/bitnami/kong:latest",
                         "Name": "kong",
-                        "Command": [
-                            "curl",
-                            "-i -X POST http://localhost:8001/services --data name=healthcheck  --data url='http://google.com'"
-                        ],
                         "PortMappings": [
                             {
                                 "ContainerPort": "8000"
