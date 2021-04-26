@@ -309,7 +309,7 @@
                 "HealthCheckCustomConfig": {
                     "FailureThreshold": 1
                 },
-                "Name": "proj1",
+                "Name": "proj1-private-DNS-service",
                 "NamespaceId": {
                     "Ref": "PrivateNamespace"
                 }
@@ -419,7 +419,6 @@
         "ECStaskdefinition": {
             "Type": "AWS::ECS::TaskDefinition",
             "Properties": {
-                "NetworkMode": "bridge",
                 "ContainerDefinitions": [
                     {
                         "MemoryReservation": 128,
@@ -480,10 +479,10 @@
             "Properties": {
                 "VPCZoneIdentifier": [
                     {
-                        "Ref": "Subnet1"
+                        "Ref": "PrivateSubnet1"
                     },
                     {
-                        "Ref": "Subnet2"
+                        "Ref": "PrivateSubnet1"
                     }
                 ],
                 "LaunchConfigurationName": {
