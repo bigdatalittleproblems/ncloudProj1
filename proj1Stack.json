@@ -302,7 +302,7 @@
                     "DnsRecords": [
                         {
                             "TTL": 60,
-                            "Type": "A"
+                            "Type": "SRV"
                         }
                     ]
                 },
