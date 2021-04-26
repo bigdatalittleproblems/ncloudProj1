@@ -287,7 +287,7 @@
         "PrivateNamespace": {
             "Type": "AWS::ServiceDiscovery::PrivateDnsNamespace",
             "Properties": {
-                "Name": "proj1",
+                "Name": "crproj1.com",
                 "Vpc": {
                     "Ref": "ECSVpc"
                 }
@@ -298,7 +298,7 @@
             "Properties": {
                 "Description": "Discovery Service for the Demo Application",
                 "DnsConfig": {
-                    "RoutingPolicy": "MULTIVALUE",
+                    "RoutingPolicy": "WEIGHTED",
                     "DnsRecords": [
                         {
                             "TTL": 60,
@@ -479,10 +479,10 @@
             "Properties": {
                 "VPCZoneIdentifier": [
                     {
-                        "Ref": "PrivateSubnet1"
+                        "Ref": "Subnet1"
                     },
                     {
-                        "Ref": "PrivateSubnet1"
+                        "Ref": "Subnet1"
                     }
                 ],
                 "LaunchConfigurationName": {
