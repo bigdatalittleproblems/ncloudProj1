@@ -293,30 +293,29 @@
                 }
             }
         },
-        "ECSserviceDiscovery": {
-            "DiscoveryService": {
-                "Type": "AWS::ServiceDiscovery::Service",
-                "Properties": {
-                    "Description": "Discovery Service for the Demo Application",
-                    "DnsConfig": {
-                        "RoutingPolicy": "WEIGHTED",
-                        "DnsRecords": [
-                            {
-                                "TTL": 60,
-                                "Type": "A"
-                            }
-                        ]
-                    },
-                    "HealthCheckCustomConfig": {
-                        "FailureThreshold": 1
-                    },
-                    "Name": "proj1",
-                    "NamespaceId": {
-                        "Ref": "PrivateNamespace"
-                    }
+        "DiscoveryService": {
+            "Type": "AWS::ServiceDiscovery::Service",
+            "Properties": {
+                "Description": "Discovery Service for the Demo Application",
+                "DnsConfig": {
+                    "RoutingPolicy": "WEIGHTED",
+                    "DnsRecords": [
+                        {
+                            "TTL": 60,
+                            "Type": "A"
+                        }
+                    ]
+                },
+                "HealthCheckCustomConfig": {
+                    "FailureThreshold": 1
+                },
+                "Name": "proj1",
+                "NamespaceId": {
+                    "Ref": "PrivateNamespace"
                 }
             }
-        },
+        }
+        
         "ECSservice": {
             "Type": "AWS::ECS::Service",
             "DependsOn": [
