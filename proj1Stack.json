@@ -331,6 +331,18 @@
                 "TaskDefinition": {
                     "Ref": "ECStaskdefinition"
                 },
+                "ServiceRegistries": [
+                    {
+                        "ContainerName": "flask",
+                        "ContainerPort": 5000,
+                        "RegistryArn": {
+                            "Fn::GetAtt": [
+                                "DiscoveryService",
+                                "Arn"
+                            ]
+                        }
+                    }
+                ],
                 "LoadBalancers": [
                     {
                         "ContainerName": "kong",
