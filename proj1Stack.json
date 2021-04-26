@@ -302,7 +302,7 @@
                     "DnsRecords": [
                         {
                             "TTL": 60,
-                            "Type": "SRV"
+                            "Type": "A"
                         }
                     ]
                 },
@@ -419,6 +419,7 @@
         "ECStaskdefinition": {
             "Type": "AWS::ECS::TaskDefinition",
             "Properties": {
+                "NetworkMode" : "awsvpc",
                 "ContainerDefinitions": [
                     {
                         "MemoryReservation": 128,
