@@ -298,7 +298,7 @@
             "Properties": {
                 "Description": "Discovery Service for the Demo Application",
                 "DnsConfig": {
-                    "RoutingPolicy": "WEIGHTED",
+                    "RoutingPolicy": "MULTIVALUE",
                     "DnsRecords": [
                         {
                             "TTL": 60,
