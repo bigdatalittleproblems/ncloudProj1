@@ -1,20 +1,10 @@
 https://docs.konghq.com/getting-started-guide/2.4.x/expose-services/
 
-curl -i -X POST http://localhost:8001/services \
-  --data name=hc \
-  --data url='http://google.com'
-
-
-curl -i -X POST http://localhost:8001/services/hc/routes \
-  --data 'paths[]=/hc' \
-  --data name=hc
-
-
-  curl -i -X POST http://localhost:8001/services \
-  --data name=yh \
+  ###############
+    curl -i -X POST http://localhost:8001/services \
+  --data name=app1 \
   --data url='http://yahoo.com'
 
-
-curl -i -X POST http://localhost:8001/services/yh/routes \
-  --data 'paths[]=/yh' \
-  --data name=yh
+  curl -i -X POST http://localhost:8001/services/app1/routes \
+    --data 'paths[]=/app1' \
+    --data name=app1
