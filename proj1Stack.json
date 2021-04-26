@@ -455,10 +455,10 @@
             "Properties": {
                 "VPCZoneIdentifier": [
                     {
-                        "Ref": "Subnet1"
+                        "Ref": "PrivateSubnet1"
                     },
                     {
-                        "Ref": "Subnet1"
+                        "Ref": "PrivateSubnet1"
                     }
                 ],
                 "LaunchConfigurationName": {
