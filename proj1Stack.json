@@ -311,7 +311,10 @@
                 },
                 "Name": "Proj1ECSservice",
                 "NamespaceId": {
-                    "Ref": "PrivateNamespace"
+                    "Fn::GetAtt": [
+                        "PrivateNamespace",
+                        "Id"
+                    ]
                 }
             }
         },
