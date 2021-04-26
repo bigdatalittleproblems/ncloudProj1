@@ -85,7 +85,7 @@
                 "HealthCheckTimeoutSeconds": 5,
                 "HealthyThresholdCount": 2,
                 "Matcher": {
-                    "HttpCode": "200-399"
+                    "HttpCode": "200-404"
                 },
                 "Port": 10,
                 "Protocol": "HTTP",
