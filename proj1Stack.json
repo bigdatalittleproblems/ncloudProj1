@@ -284,6 +284,39 @@
                 ]
             }
         },
+        "PrivateNamespace": {
+            "Type": "AWS::ServiceDiscovery::PrivateDnsNamespace",
+            "Properties": {
+                "Name": "proj1",
+                "Vpc": {
+                    "Ref": "ECSVpc"
+                }
+            }
+        },
+        "ECSserviceDiscovery": {
+            "DiscoveryService": {
+                "Type": "AWS::ServiceDiscovery::Service",
+                "Properties": {
+                    "Description": "Discovery Service for the Demo Application",
+                    "DnsConfig": {
+                        "RoutingPolicy": "WEIGHTED",
+                        "DnsRecords": [
+                            {
+                                "TTL": 60,
+                                "Type": "A"
+                            }
+                        ]
+                    },
+                    "HealthCheckCustomConfig": {
+                        "FailureThreshold": 1
+                    },
+                    "Name": "proj1",
+                    "NamespaceId": {
+                        "Ref": "PrivateNamespace"
+                    }
+                }
+            }
+        },
         "ECSservice": {
             "Type": "AWS::ECS::Service",
             "DependsOn": [
@@ -605,7 +638,8 @@
                         "CidrIp": "0.0.0.0/0",
                         "FromPort": 443,
                         "ToPort": 443
-                    },  {
+                    },
+                    {
                         "IpProtocol": "tcp",
                         "CidrIp": "0.0.0.0/0",
                         "FromPort": 8001,
