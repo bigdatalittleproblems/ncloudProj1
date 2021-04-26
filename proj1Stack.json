@@ -309,12 +309,7 @@
                 "HealthCheckCustomConfig": {
                     "FailureThreshold": 1
                 },
-                "Name": {
-                    "Fn::GetAtt": [
-                        "ECSservice",
-                        "Name"
-                    ]
-                },
+                "Name": "Proj1ECSservice",
                 "NamespaceId": {
                     "Ref": "PrivateNamespace"
                 }
