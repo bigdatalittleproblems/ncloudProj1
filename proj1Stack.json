@@ -388,38 +388,10 @@
                 ]
             }
         },
-        "TaskBackup": {
-            "Type": "AWS::ECS::TaskDefinition",
-            "Properties": {
-                "ExecutionRoleArn": {
-                    "Fn::GetAtt": [
-                        "ECSTaskExecutionRole",
-                        "Arn"
-                    ]
-                },
-                "ContainerDefinitions": [
-                    {
-                        "MemoryReservation": 128,
-                        "Image": "public.ecr.aws/nginx/nginx:latest",
-                        "Name": "nginx",
-                        "PortMappings": [
-                            {
-                                "ContainerPort": "80"
-                            }
-                        ]
-                    }
-                ]
-            },
-            "Metadata": {
-                "AWS::CloudFormation::Designer": {
-                    "id": "a765afa1-6723-4e0b-977f-e8c2c419f27d"
-                }
-            }
-        },
         "ECStaskdefinition": {
             "Type": "AWS::ECS::TaskDefinition",
             "Properties": {
-                "NetworkMode" : "bridge",
+                "NetworkMode": "bridge",
                 "ContainerDefinitions": [
                     {
                         "MemoryReservation": 128,
