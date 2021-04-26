@@ -293,7 +293,7 @@
                 }
             }
         },
-        "DiscoveryService": {
+        "ECSDiscoveryService": {
             "Type": "AWS::ServiceDiscovery::Service",
             "Properties": {
                 "Description": "Discovery Service for the Demo Application",
@@ -337,7 +337,7 @@
                         "ContainerPort": 5000,
                         "RegistryArn": {
                             "Fn::GetAtt": [
-                                "DiscoveryService",
+                                "ECSDiscoveryService",
                                 "Arn"
                             ]
                         }
