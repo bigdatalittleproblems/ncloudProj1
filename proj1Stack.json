@@ -300,16 +300,14 @@
                 "DnsConfig": {
                     "RoutingPolicy": "WEIGHTED",
                     "DnsRecords": [
-                        [
-                            {
-                                "TTL": 60,
-                                "Type": "A"
-                            },
-                            {
-                                "TTL": 60,
-                                "Type": "SRV"
-                            }
-                        ]
+                        {
+                            "TTL": 60,
+                            "Type": "A"
+                        },
+                        {
+                            "TTL": 60,
+                            "Type": "SRV"
+                        }
                     ]
                 },
                 "HealthCheckCustomConfig": {
