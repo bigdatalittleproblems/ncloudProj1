@@ -538,18 +538,13 @@
                         ]
                     }
                 }
-            },
-            "Metadata": {
-                "AWS::CloudFormation::Designer": {
-                    "id": "81959a1e-7ff5-4952-9bb6-759c26706ade"
-                }
             }
         },
         "ECSVpc": {
             "Type": "AWS::EC2::VPC",
             "Properties": {
-                "EnableDnsHostnames":true,
-                "EnableDnsSupport":true,
+                "EnableDnsHostnames": true,
+                "EnableDnsSupport": true,
                 "CidrBlock": "10.0.0.0/16"
             },
             "Metadata": {
